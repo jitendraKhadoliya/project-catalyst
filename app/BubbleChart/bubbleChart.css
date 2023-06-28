@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap');
+
+.graph-view[data-v-437a01b1] {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.graph-view[data-v-437a01b1]:not(.--iframe) {
+    height: calc(100vh - 56px);
+    padding-top: 56px;
+}
+
+@media (min-width: 600px) {
+    .graph-view[data-v-437a01b1]:not(.--iframe) {
+        height: calc(100vh - 64px);
+        padding-top: 64px;
+    }
+}
+
+.theme-background-overlay {
+    min-width: 100%;
+    min-height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.mdc-typography {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: Montserrat, sans-serif;
+    font-family: var(--mdc-typography-font-family, Montserrat, sans-serif);
+}
+
+.bubblemaps-mdc {
+    min-height: 100vh;
+    margin: 0;
+    color: #fff;
+    background: #090015;
+    background: linear-gradient(90deg, #090015, #130a1f, #090015);
+}
+
+.mdc-typography {
+    color: #fff;
+    color: var(--text-color, #fff);
+}
+
+body {
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+#svg {
+    height: 100%;
+    width: 100%;
+    cursor: move;
+}
+
+:-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+    background: #000;
+    background: var(--bg-color, #000);
+}
+
+:-webkit-scrollbar-thumb {
+    background: #4d3b4f;
+    background: var(--button-color, #4d3b4f);
+    -webkit-border-radius: 2ex;
+    border: 2px solid #000;
+    border: 2px solid var(--bg-color, #000);
+}
