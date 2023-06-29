@@ -33,7 +33,7 @@
 
 // export default Navbar;
 
-// Rest of the code...
+// // Rest of the code...
 "use client";
 import React, { useContext } from "react";
 import { StackDataContext } from "../../utils/StackContext";

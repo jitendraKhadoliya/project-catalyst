@@ -1,8 +1,9 @@
+// App.js
 import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/footer/Footer";
-import { StackDataProvider } from "../utils/StackContext";
+import { StackDataProvider } from "../utils/StackContext.jsx";
 
 const inter = Inter({ subsets: ["latin"] });
 
