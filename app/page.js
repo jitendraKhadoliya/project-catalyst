@@ -11,11 +11,13 @@ import { StackDataContext } from "../utils/StackContext";
 import data from "../constant/FinalData.json";
 import * as d3 from "d3";
 import "./homepage.css";
+import { AiOutlineClose, AiOutlineCopy, AiTwotoneCopy } from "react-icons/ai";
 
 const Home = () => {
   const { selectedAddress } = useContext(StackDataContext);
   const chartRef = useRef(null);
   const [selectedBubble, setSelectedBubble] = useState(null);
+  const [isCopied, setIsCopied] = useState(false);
 
   // Truncate the text if its width exceeds maxWidth
   function truncateText(text, maxWidth) {
@@ -61,7 +63,7 @@ const Home = () => {
       const height = 400;
 
       // Define the bubble chart layout
-      const bubble = d3.pack().size([width, height]).padding(1.5);
+      const bubble = d3.pack().size([width, height]).padding(20.5);
 
       // Create a hierarchy of data for the bubble chart
       const root = d3
@@ -91,8 +93,12 @@ const Home = () => {
       // Add circles to represent the bubbles
       bubbles
         .append("circle")
-        .attr("r", (d) => d.r)
-        .style("fill", (d, i) => d3.schemeCategory10[i % 10]);
+        .attr("r", 0)
+        .style("fill", (d, i) => d3.schemeCategory10[i % 10])
+        .transition()
+        .duration(100) // Transition duration
+        .attr("r", (d) => d.r) // Transition to the actual radius
+        .style("cursor", "pointer"); // Set the cursor to a pointer
 
       // Add text labels to the bubbles
       bubbles
@@ -108,9 +114,29 @@ const Home = () => {
         // .text((d) => truncateText(d.data.address, d.r * 0.7))
         .style("font-size", (d) => `${Math.min(0.5 * d.r, 40)}px`);
 
-      // Inside your D3 code, where we create the text elements for the bubbles
+      // Shake the bubbles continuously
+      const shakeInterval = setInterval(() => {
+        bubbles
+          .transition()
+          .duration(1000) // Transition duration
+          .attr("transform", (d) => {
+            const newX = d.x + (Math.random() - 0.5) * 20; // Shake X position
+            const newY = d.y + (Math.random() - 0.5) * 20; // Shake Y position
+            return `translate(${newX},${newY})`;
+          });
+      }, 800); // Interval between shakes
+
+      // Clean up the interval on component unmount
+      return () => {
+        clearInterval(shakeInterval);
+      };
     }
   }, [handleBubbleClick, selectedAddress, selectedData]);
+
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText(selectedBubble.address);
+    // .then(() => setIsCopied(true));
+  };
 
   return (
     <div>
@@ -118,10 +144,32 @@ const Home = () => {
       {selectedBubble && (
         <div className="bubble-details">
           <button className="close-button" onClick={handleCloseButtonClick}>
-            Close
+            <AiOutlineClose size={17} className=" hover:scale-125" />
           </button>
           <div>
-            <h2>{selectedBubble.address}</h2>
+            <h3 className="bubble-address ">
+              Address: {selectedBubble.address}
+            </h3>
+            <span
+              className=" flex justify-start items-center mt-2 mb-2"
+              onClick={handleCopyAddress}
+            >
+              Copy Address{" "}
+              <AiOutlineCopy
+                size={22}
+                className="ml-2 cursor-pointer"
+                onClick={handleCopyAddress}
+              />
+              {/* {isCopied ? (
+                <>
+                  Copied <AiTwotoneCopy size={22} className="ml-2" />
+                </>
+              ) : (
+                <>
+                  Copy Address <AiOutlineCopy size={22} className="ml-2" />
+                </>
+              )} */}
+            </span>
             <p>Value: {selectedBubble.value}</p>
             {/* Add any other data you want to display */}
           </div>
