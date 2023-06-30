@@ -12,12 +12,14 @@ import data from "../constant/FinalData.json";
 import * as d3 from "d3";
 import "./homepage.css";
 import { AiOutlineClose, AiOutlineCopy, AiTwotoneCopy } from "react-icons/ai";
+import ParticleComponent from "@/components/ParticleComponent";
+import HomeWithoutStackAddress from "@/components/HomeWithoutStackAddress";
 
 const Home = () => {
   const { selectedAddress } = useContext(StackDataContext);
   const chartRef = useRef(null);
   const [selectedBubble, setSelectedBubble] = useState(null);
-  const [isCopied, setIsCopied] = useState(false);
+  // const [isCopied, setIsCopied] = useState(false); // for future when I will implement copy check functionality
 
   // Truncate the text if its width exceeds maxWidth
   function truncateText(text, maxWidth) {
@@ -105,6 +107,7 @@ const Home = () => {
         .append("text")
         .attr("dy", ".3em")
         .style("text-anchor", "middle")
+        .style("cursor", "pointer") // Set the cursor to a pointer
         .text((d) => {
           if (d.r < 10) {
             return "";
@@ -138,11 +141,15 @@ const Home = () => {
     // .then(() => setIsCopied(true));
   };
 
+  if (!selectedAddress.length) {
+    return <HomeWithoutStackAddress />;
+  }
+
   return (
-    <div>
+    <div className="home-container">
       <div ref={chartRef} className="chart "></div>
       {selectedBubble && (
-        <div className="bubble-details">
+        <div className="bubble-details relative z-20">
           <button className="close-button" onClick={handleCloseButtonClick}>
             <AiOutlineClose size={17} className=" hover:scale-125" />
           </button>
