@@ -13,7 +13,9 @@ import "./HomeWithStackAddress.css";
 import { AiOutlineClose, AiOutlineCopy } from "react-icons/ai";
 import { StackDataContext } from "@/utils/StackContext";
 import useLottieAnimation from "@/utils/useLottieAnimation";
-import animationData from "@/public/json/currency.json";
+import animationData from "@/public/json/flyingWalletMoney.json";
+// import animationData from "@/public/json/hologram.json";
+// import animationData from "@/public/json/wallet-recoloured.json";
 
 const HomeWithStackAddress = () => {
   const { selectedAddress } = useContext(StackDataContext);
@@ -144,9 +146,9 @@ const HomeWithStackAddress = () => {
   return (
     <div className=" relative">
       <div
-        ref={animationContainerRef}
-        // className="absolute inset-0 max-h-screen max-h-59 z-0"
-        className="animation-container"
+      // ref={animationContainerRef}
+      // {/* // className="absolute inset-0 max-h-screen max-h-59 z-0" */}
+      // className="animation-container"
       ></div>
       <div ref={chartRef} className="chart h-[100vh]"></div>
       {selectedBubble && (
