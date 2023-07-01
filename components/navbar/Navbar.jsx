@@ -5,6 +5,8 @@ import data from "../../constant/FinalData.json";
 // import WalletAnimation from "@/public/json/walletRecoloured.json";
 import WalletAnimation from "@/public/json/flyingWalletMoney.json";
 import useLottieAnimation from "@/utils/useLottieAnimation";
+import hexForkLogo from "@/public/image/Hexfork_logo.png";
+import Image from "next/image";
 
 const Navbar = () => {
   const { selectedAddress, setSelectedAddress } = useContext(StackDataContext);
@@ -26,9 +28,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className=" flex justify-between items-center my-[20px] mx-3 ">
+    <nav className=" flex justify-between items-center my-[20px] mx-8 ">
       <div>
-        <span>Hexfork Logo {"HexFork"} </span>
+        <Image src={hexForkLogo} alt=" hexfork logo" height={60} />
       </div>
       <div className=" relative flex justify-center items-center">
         {" "}
