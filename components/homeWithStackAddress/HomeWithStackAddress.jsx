@@ -13,8 +13,8 @@ import "./HomeWithStackAddress.css";
 import { AiOutlineClose, AiOutlineCopy } from "react-icons/ai";
 import { StackDataContext } from "@/utils/StackContext";
 import useLottieAnimation from "@/utils/useLottieAnimation";
-import animationData from "@/public/json/flyingWalletMoney.json";
-// import animationData from "@/public/json/hologram.json";
+// import animationData from "@/public/json/flyingWalletMoney.json";
+import animationData from "@/public/json/hologram.json";
 // import animationData from "@/public/json/wallet-recoloured.json";
 
 const HomeWithStackAddress = () => {
@@ -146,33 +146,48 @@ const HomeWithStackAddress = () => {
   return (
     <div className=" relative">
       <div
-      // ref={animationContainerRef}
-      // {/* // className="absolute inset-0 max-h-screen max-h-59 z-0" */}
-      // className="animation-container"
+        ref={animationContainerRef}
+        className="absolute inset-0 max-h-screen max-h-59 z-0"
+        // className="animation-container"
       ></div>
-      <div ref={chartRef} className="chart h-[100vh]"></div>
+      <div
+        ref={chartRef}
+        className="chart h-[100vh] flex justify-center items-center "
+      ></div>
       {selectedBubble && (
-        <div className="bubble-details relative z-20">
-          <button className="close-button" onClick={handleCloseButtonClick}>
-            <AiOutlineClose size={17} className="hover:scale-125" />
-          </button>
+        <div className="bubble-details  z-20 px-5 py-2 rounded-lg border-t-2 border-gray-500 border-b-2 absolute top-[-18px] w-[40%] backdrop-blur-md ">
+          <span className=" flex w-full justify-end my-1">
+            <button
+              className="close-button border-none cursor-pointer "
+              onClick={handleCloseButtonClick}
+            >
+              <AiOutlineClose size={27} className="hover:scale-125" />
+            </button>
+          </span>
           <div>
             <h3 className="bubble-address">
-              Address: {selectedBubble.address}
+              <span className=" mr-2 text-lg">Address:</span>
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text font-semibold whitespace-normal break-words ">
+                {selectedBubble.address}
+              </span>
             </h3>
             <span
               className="flex justify-start items-center mt-2 mb-2"
               onClick={handleCopyAddress}
             >
-              Copy Address{" "}
+              <span className=" mr-2 text-lg">Copy Address: </span>
               <AiOutlineCopy
                 size={22}
-                className="ml-2 cursor-pointer"
+                className=" cursor-pointer"
                 onClick={handleCopyAddress}
               />
             </span>
-            <p>Value: {selectedBubble.value}</p>
-            {/* Add any other data you want to display */}
+            <p>
+              <span className=" mr-2 text-lg">Value:</span>
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text font-semibold ">
+                {selectedBubble.value} ADA
+              </span>
+            </p>
           </div>
         </div>
       )}

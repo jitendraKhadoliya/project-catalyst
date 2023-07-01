@@ -17,60 +17,9 @@
     fill: black;
 }
 
-.bubble-details {
-    position: absolute;
-    top: 51px;
-    right: 20px;
-    width: 40%;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.bubble-details h4 {
-    margin-top: 0;
-}
-
-.bubble-details p {
-    margin-bottom: 10px;
-}
-
-.close-button {
-    /* background-color: #ccc; */
-    color: black;
-    /* color: red; */
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.close-button-icon:hover {
-    background-color: #999;
-    scale: (1.2);
-}
-
 .bubble circle {
     transition: r 0.2s ease-in-out;
 }
-
-.bubble-address {
-    white-space: normal;
-    word-wrap: break-word;
-}
-
-/* glass */
-
-/* .home-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../public/next.svg');
-    backdrop-filter: blur(10px);
-} */
 
 .animation-container {
     position: absolute;
