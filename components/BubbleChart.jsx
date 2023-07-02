@@ -49,9 +49,9 @@
 // };
 
 // export default BubbleChart;
-"use client";
-import { useEffect, useRef } from "react";
-import { Bubble } from "react-chartjs-2";
+'use client';
+import { useEffect, useRef } from 'react';
+import { Bubble } from 'react-chartjs-2';
 
 const BubbleChart = ({ data }) => {
   const chartRef = useRef(null);
@@ -69,7 +69,7 @@ const BubbleChart = ({ data }) => {
       plugins: {
         title: {
           display: true,
-          text: "Bubble Chart",
+          text: 'Bubble Chart',
         },
       },
     };
@@ -77,16 +77,16 @@ const BubbleChart = ({ data }) => {
     const chartData = {
       datasets: [
         {
-          label: "Bubble Chart",
+          label: 'Bubble Chart',
           data: data,
-          backgroundColor: "rgba(75, 192, 192, 0.6)",
-          borderColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: 'rgba(75, 192, 192, 0.6)',
+          borderColor: 'rgba(75, 192, 192, 1)',
         },
       ],
     };
 
     const chartConfig = {
-      type: "bubble",
+      type: 'bubble',
       data: chartData,
       options: options,
     };

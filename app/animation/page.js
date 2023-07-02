@@ -1,6 +1,6 @@
-"use client";
-import useLottieAnimation from "@/utils/useLottieAnimation";
-import animationData from "../../public/json/walking-pencil.json";
+'use client';
+import useLottieAnimation from '@/utils/useLottieAnimation';
+import animationData from '../../public/json/walking-pencil.json';
 
 const Page = () => {
   const animationContainerRef = useLottieAnimation(animationData);

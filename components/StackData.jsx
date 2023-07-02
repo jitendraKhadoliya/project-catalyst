@@ -1,8 +1,8 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
 
 const StackData = ({ data }) => {
-  const [selectedAddress, setSelectedAddress] = useState("");
+  const [selectedAddress, setSelectedAddress] = useState('');
 
   const handleAddressChange = (event) => {
     setSelectedAddress(event.target.value);

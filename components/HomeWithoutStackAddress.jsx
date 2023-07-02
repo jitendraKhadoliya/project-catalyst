@@ -1,7 +1,7 @@
-import useLottieAnimation from "@/utils/useLottieAnimation";
-import React, { useEffect, useState } from "react";
+import useLottieAnimation from '@/utils/useLottieAnimation';
+import React, { useEffect, useState } from 'react';
 // import animationData from "@/public/json/currency.json";
-import animationData from "@/public/json/walking-pencil.json";
+import animationData from '@/public/json/walking-pencil.json';
 
 const HomeWithoutStackAddress = () => {
   const animationContainerRef = useLottieAnimation(animationData);

@@ -1,11 +1,11 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { Inter } from "next/font/google";
-import hexForkLogo from "@/public/image/Hexfork_logo.png";
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Inter } from 'next/font/google';
+import hexForkLogo from '@/public/image/Hexfork_logo.png';
 
 // import Link from "next/link";
-import React from "react";
+import React from 'react';
 // import { BsLinkedin, BsTwitter } from "react-icons/bs";
 import {
   FaYoutube,
@@ -14,7 +14,7 @@ import {
   FaLinkedin,
   FaLinkedinIn,
   FaFacebookF,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -121,7 +121,7 @@ const Footer = () => {
               letter-spacing: 0.025em;
               font-size: 0.75rem;
               line-height: 1.667;
-              font-family: "Eco Coding W02 WGL4", monospace;
+              font-family: 'Eco Coding W02 WGL4', monospace;
             }
           `}
         </style>
@@ -176,9 +176,9 @@ const Footer = () => {
                   <FaYoutube
                     size={20}
                     onMouseOver={({ target }) =>
-                      (target.style.color = "#d1363a")
+                      (target.style.color = '#d1363a')
                     }
-                    onMouseOut={({ target }) => (target.style.color = "gray")}
+                    onMouseOut={({ target }) => (target.style.color = 'gray')}
                   />
                 </Link>
 
@@ -191,9 +191,9 @@ const Footer = () => {
                   <FaTwitter
                     size={20}
                     onMouseOver={({ target }) =>
-                      (target.style.color = "#d1363a")
+                      (target.style.color = '#d1363a')
                     }
-                    onMouseOut={({ target }) => (target.style.color = "gray")}
+                    onMouseOut={({ target }) => (target.style.color = 'gray')}
                   />
                 </Link>
 
@@ -202,9 +202,9 @@ const Footer = () => {
                   <FaFacebookF
                     size={20}
                     onMouseOver={({ target }) =>
-                      (target.style.color = "#d1363a")
+                      (target.style.color = '#d1363a')
                     }
-                    onMouseOut={({ target }) => (target.style.color = "gray")}
+                    onMouseOut={({ target }) => (target.style.color = 'gray')}
                   />
                 </Link>
 
@@ -217,9 +217,9 @@ const Footer = () => {
                   <FaLinkedinIn
                     size={20}
                     onMouseOver={({ target }) =>
-                      (target.style.color = "#d1363a")
+                      (target.style.color = '#d1363a')
                     }
-                    onMouseOut={({ target }) => (target.style.color = "gray")}
+                    onMouseOut={({ target }) => (target.style.color = 'gray')}
                   />
                 </Link>
               </span>

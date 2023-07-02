@@ -1,5 +1,5 @@
-import React from "react";
-import "./bubbleChart.css";
+import React from 'react';
+import './bubbleChart.css';
 
 const page = () => {
   return (

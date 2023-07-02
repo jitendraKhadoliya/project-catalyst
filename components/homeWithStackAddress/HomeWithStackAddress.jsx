@@ -6,14 +6,14 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from "react";
-import data from "@/constant/FinalData.json";
-import * as d3 from "d3";
-import "./HomeWithStackAddress.css";
-import { AiOutlineClose, AiOutlineCopy } from "react-icons/ai";
-import { StackDataContext } from "@/utils/StackContext";
-import useLottieAnimation from "@/utils/useLottieAnimation";
-import animationData from "@/public/json/hologram.json";
+} from 'react';
+import data from '@/constant/FinalData.json';
+import * as d3 from 'd3';
+import './HomeWithStackAddress.css';
+import { AiOutlineClose, AiOutlineCopy } from 'react-icons/ai';
+import { StackDataContext } from '@/utils/StackContext';
+import useLottieAnimation from '@/utils/useLottieAnimation';
+import animationData from '@/public/json/hologram.json';
 
 const HomeWithStackAddress = () => {
   const { selectedAddress } = useContext(StackDataContext);
@@ -23,11 +23,11 @@ const HomeWithStackAddress = () => {
 
   // Truncate the text if its width exceeds maxWidth
   function truncateText(text, maxWidth) {
-    const ellipsis = "...";
-    const textContainer = document.createElement("div");
-    textContainer.style.position = "absolute";
-    textContainer.style.visibility = "hidden";
-    textContainer.style.width = "auto";
+    const ellipsis = '...';
+    const textContainer = document.createElement('div');
+    textContainer.style.position = 'absolute';
+    textContainer.style.visibility = 'hidden';
+    textContainer.style.width = 'auto';
     textContainer.style.maxWidth = `${maxWidth}px`;
     textContainer.textContent = text;
     document.body.appendChild(textContainer);
@@ -58,7 +58,7 @@ const HomeWithStackAddress = () => {
 
   useEffect(() => {
     // Clear any previous chart
-    d3.select(chartRef.current).selectAll("*").remove();
+    d3.select(chartRef.current).selectAll('*').remove();
 
     // Create a new chart if data is available
     if (selectedData) {
@@ -78,50 +78,50 @@ const HomeWithStackAddress = () => {
       // Create the SVG container for the chart
       const svg = d3
         .select(chartRef.current)
-        .append("svg")
-        .attr("width", chartWidth)
-        .attr("height", height);
+        .append('svg')
+        .attr('width', chartWidth)
+        .attr('height', height);
 
       // Create the bubble elements
       const bubbles = svg
-        .selectAll(".bubble")
+        .selectAll('.bubble')
         .data(root.children)
         .enter()
-        .append("g")
-        .attr("class", "bubble")
-        .attr("transform", (d) => `translate(${d.x},${d.y})`)
-        .on("click", handleBubbleClick);
+        .append('g')
+        .attr('class', 'bubble')
+        .attr('transform', (d) => `translate(${d.x},${d.y})`)
+        .on('click', handleBubbleClick);
 
       // Add circles to represent the bubbles
       bubbles
-        .append("circle")
-        .attr("r", 0)
-        .style("fill", (d, i) => d3.schemeCategory10[i % 10])
+        .append('circle')
+        .attr('r', 0)
+        .style('fill', (d, i) => d3.schemeCategory10[i % 10])
         .transition()
         .duration(100) // Transition duration
-        .attr("r", (d) => d.r) // Transition to the actual radius
-        .style("cursor", "pointer"); // Set the cursor to a pointer
+        .attr('r', (d) => d.r) // Transition to the actual radius
+        .style('cursor', 'pointer'); // Set the cursor to a pointer
 
       // Add text labels to the bubbles
       bubbles
-        .append("text")
-        .attr("dy", ".3em")
-        .style("text-anchor", "middle")
-        .style("cursor", "pointer") // Set the cursor to a pointer
+        .append('text')
+        .attr('dy', '.3em')
+        .style('text-anchor', 'middle')
+        .style('cursor', 'pointer') // Set the cursor to a pointer
         .text((d) => {
           if (d.r < 10) {
-            return "";
+            return '';
           }
           return truncateText(d.data.address, d.r * 0.7);
         })
-        .style("font-size", (d) => `${Math.min(0.5 * d.r, 40)}px`);
+        .style('font-size', (d) => `${Math.min(0.5 * d.r, 40)}px`);
 
       // Shake the bubbles continuously
       const shakeInterval = setInterval(() => {
         bubbles
           .transition()
           .duration(1000) // Transition duration
-          .attr("transform", (d) => {
+          .attr('transform', (d) => {
             const newX = d.x + (Math.random() - 0.5) * 20; // Shake X position
             const newY = d.y + (Math.random() - 0.5) * 20; // Shake Y position
             return `translate(${newX},${newY})`;
@@ -148,8 +148,8 @@ const HomeWithStackAddress = () => {
       setChartWidth(newWidth);
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (

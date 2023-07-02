@@ -1,6 +1,6 @@
-"use client";
-import Lottie from "lottie-web";
-import { useEffect, useRef } from "react";
+'use client';
+import Lottie from 'lottie-web';
+import { useEffect, useRef } from 'react';
 
 const useLottieAnimation = (animationData, selectedAddress) => {
   const animationContainerRef = useRef(null);
@@ -8,7 +8,7 @@ const useLottieAnimation = (animationData, selectedAddress) => {
   useEffect(() => {
     const anim = Lottie.loadAnimation({
       container: animationContainerRef.current,
-      renderer: "svg",
+      renderer: 'svg',
       loop: true,
       autoplay: true,
       animationData: animationData,
