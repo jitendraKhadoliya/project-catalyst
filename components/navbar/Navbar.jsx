@@ -28,18 +28,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav className=" flex justify-between items-center my-[20px] mx-8 ">
+    <nav className=" flex justify-between items-center my-[20px] mx-2 md:mx-8 gap-3">
       <div>
         <Image src={hexForkLogo} alt=" hexfork logo" height={60} />
       </div>
-      <div className=" relative flex justify-center items-center">
+      <div className=" relative justify-center items-center hidden md:flex ">
         {' '}
         {totalBalance ? (
           <>
-            <span> Total Balance</span>
+            <span className=" hidden md:inline"> Total Balance</span>
             <span
               ref={animationContainerRef}
-              className=" relative h-10 mt-[-12px] "
+              className=" relative h-10 w-10 mt-[-12px]"
             >
               {' '}
             </span>
@@ -55,9 +55,9 @@ const Navbar = () => {
         <select
           value={selectedAddress}
           onChange={handleAddressChange}
-          className="bg-[#0d1117] text-[18px]"
+          className="bg-[#0d1117] text-[18px] w-[145px] md:w-full font-sans"
         >
-          <option value="">Select a Stake Address</option>
+          <option value="">Select an Stake Address</option>
           {data.map((item, index) => (
             <option key={item.stake_address} value={item.stake_address}>
               {`Address ${index + 1}`}

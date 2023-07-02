@@ -192,7 +192,7 @@ const HomeWithStackAddress = () => {
             </span>
             <p>
               <span className="mr-2 text-lg">Value:</span>
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text font-semibold">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text font-semibold whitespace-normal break-words">
                 {selectedBubble.value} ADA
               </span>
             </p>
