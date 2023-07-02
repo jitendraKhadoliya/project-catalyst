@@ -1,4 +1,4 @@
-// "use client";
+// // "use client";
 import React, {
   useCallback,
   useContext,
@@ -13,14 +13,13 @@ import "./HomeWithStackAddress.css";
 import { AiOutlineClose, AiOutlineCopy } from "react-icons/ai";
 import { StackDataContext } from "@/utils/StackContext";
 import useLottieAnimation from "@/utils/useLottieAnimation";
-// import animationData from "@/public/json/flyingWalletMoney.json";
 import animationData from "@/public/json/hologram.json";
-// import animationData from "@/public/json/wallet-recoloured.json";
 
 const HomeWithStackAddress = () => {
   const { selectedAddress } = useContext(StackDataContext);
   const chartRef = useRef(null);
   const [selectedBubble, setSelectedBubble] = useState(null);
+  const [chartWidth, setChartWidth] = useState(400);
 
   // Truncate the text if its width exceeds maxWidth
   function truncateText(text, maxWidth) {
@@ -63,11 +62,10 @@ const HomeWithStackAddress = () => {
 
     // Create a new chart if data is available
     if (selectedData) {
-      const width = 600;
       const height = 400;
 
       // Define the bubble chart layout
-      const bubble = d3.pack().size([width, height]).padding(20.5);
+      const bubble = d3.pack().size([chartWidth, height]).padding(20.5);
 
       // Create a hierarchy of data for the bubble chart
       const root = d3
@@ -81,7 +79,7 @@ const HomeWithStackAddress = () => {
       const svg = d3
         .select(chartRef.current)
         .append("svg")
-        .attr("width", width)
+        .attr("width", chartWidth)
         .attr("height", height);
 
       // Create the bubble elements
@@ -135,7 +133,7 @@ const HomeWithStackAddress = () => {
         clearInterval(shakeInterval);
       };
     }
-  }, [handleBubbleClick, selectedAddress, selectedData]);
+  }, [chartWidth, handleBubbleClick, selectedAddress, selectedData]);
 
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(selectedBubble.address);
@@ -143,22 +141,32 @@ const HomeWithStackAddress = () => {
 
   const animationContainerRef = useLottieAnimation(animationData);
 
+  useEffect(() => {
+    // Update the chart width on window resize
+    const handleResize = () => {
+      const newWidth = window.innerWidth < 640 ? 340 : 800;
+      setChartWidth(newWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className=" relative">
+    <div className="relative">
       <div
         ref={animationContainerRef}
         className="absolute inset-0 max-h-screen max-h-59 z-0"
-        // className="animation-container"
       ></div>
       <div
         ref={chartRef}
-        className="chart h-[100vh] flex justify-center items-center "
+        className="chart h-[100vh] flex justify-center items-center"
       ></div>
       {selectedBubble && (
-        <div className="bubble-details  z-20 px-5 py-2 rounded-lg border-t-2 border-gray-500 border-b-2 absolute top-[-18px] w-[40%] backdrop-blur-md ">
-          <span className=" flex w-full justify-end my-1">
+        <div className="bubble-details absolute z-20 px-4 py-2 rounded-lg border-t-2 border-gray-500 border-b-2 top-[-18px] w-[40%] backdrop-blur-md">
+          <span className="flex w-full justify-end my-1">
             <button
-              className="close-button border-none cursor-pointer "
+              className="close-button border-none cursor-pointer"
               onClick={handleCloseButtonClick}
             >
               <AiOutlineClose size={27} className="hover:scale-125" />
@@ -166,8 +174,8 @@ const HomeWithStackAddress = () => {
           </span>
           <div>
             <h3 className="bubble-address">
-              <span className=" mr-2 text-lg">Address:</span>
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text font-semibold whitespace-normal break-words ">
+              <span className="mr-2 text-lg">Address:</span>
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text font-semibold whitespace-normal break-words">
                 {selectedBubble.address}
               </span>
             </h3>
@@ -175,16 +183,16 @@ const HomeWithStackAddress = () => {
               className="flex justify-start items-center mt-2 mb-2"
               onClick={handleCopyAddress}
             >
-              <span className=" mr-2 text-lg">Copy Address: </span>
+              <span className="mr-2 text-lg">Copy Address: </span>
               <AiOutlineCopy
                 size={22}
-                className=" cursor-pointer"
+                className="cursor-pointer"
                 onClick={handleCopyAddress}
               />
             </span>
             <p>
-              <span className=" mr-2 text-lg">Value:</span>
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text font-semibold ">
+              <span className="mr-2 text-lg">Value:</span>
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text font-semibold">
                 {selectedBubble.value} ADA
               </span>
             </p>

@@ -1,5 +1,5 @@
 import useLottieAnimation from "@/utils/useLottieAnimation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import animationData from "@/public/json/currency.json";
 import animationData from "@/public/json/walking-pencil.json";
 
@@ -7,7 +7,7 @@ const HomeWithoutStackAddress = () => {
   const animationContainerRef = useLottieAnimation(animationData);
 
   return (
-    <div className=" flex items-center justify-normal ">
+    <div className=" flex items-center justify-normal flex-col md:flex-row">
       <div ref={animationContainerRef} className="h-[90vh]  ml-[50px]"></div>
       <div className=" flex justify-center w-[200px] text-[24px] flex-col items-baseline">
         <span>Unlock the power of your</span>
